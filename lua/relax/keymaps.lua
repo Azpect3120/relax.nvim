@@ -1,4 +1,3 @@
-local window = require("relax.window")
 local requests = require("relax.requests")
 
 local M = {}
@@ -12,9 +11,9 @@ function Enter_event(swapnr)
   if (string.find(line, "New")) then
     requests.new(swapnr)
   elseif (string.find(line, "Past")) then
-    print("Past requests")
+    requests.show_history()
   elseif (string.find(line, "Clear")) then
-    print("Clearing requests")
+    requests.clear_history()
   end
 end
 

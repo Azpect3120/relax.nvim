@@ -7,10 +7,12 @@ local M = {
   swapnr = nil
 }
 
+--- Setup the plugin
 function M.setup()
   M.bufnr = window.create_buffer("relaxui", false)
 end
 
+--- Display the UI
 function M.display()
   if (M.bufnr == nil) then
     M.setup()
