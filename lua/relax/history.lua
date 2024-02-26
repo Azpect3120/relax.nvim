@@ -1,12 +1,17 @@
 local M = {
-  history = {}
+  history = {},
+  max = 10
 }
 
 --- Append a request to the history
 --- @param method string HTTP method
 --- @param url string URL
-function M.append(method, url)
-  table.insert(M.history, { method = method, url = url })
+--- @param body string Request body
+function M.append(method, url, body)
+  if #M.history >= M.max then
+    table.remove(M.history, #M.history)
+  end
+  table.insert(M.history, 1, { method = method, url = url, body = body })
 end
 
 --- Clear the history

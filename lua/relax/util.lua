@@ -52,8 +52,6 @@ function M.parse_request_buffer(lines)
   end
 
   parsed.body = ""
-
-  print(parsed.body)
   return parsed
 end
 
