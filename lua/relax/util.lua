@@ -67,4 +67,15 @@ function M.get_response_line(lines)
   return -1
 end
 
+--- Get the UI history line from the given lines
+--- @param lines table: The lines to search for the UI request line
+function M.get_ui_request_line(lines)
+  for i, line in ipairs(lines) do
+    if string.find(line, "Past Requests") then
+      return i
+    end
+  end
+  return -1
+end
+
 return M

@@ -1,4 +1,5 @@
 local requests = require("relax.requests")
+local util = require("relax.util")
 
 local M = {}
 
@@ -7,7 +8,6 @@ local M = {}
 --- @param bufnr number: The buffer number of the UI
 function Enter_event(swapnr, bufnr)
   local line = vim.api.nvim_get_current_line()
-  local linenr = vim.api.nvim_win_get_cursor(0)[1]
 
   if (string.find(line, "New")) then
     requests.new(swapnr)
@@ -15,6 +15,15 @@ function Enter_event(swapnr, bufnr)
     requests.show_history(bufnr)
   elseif (string.find(line, "Clear")) then
     requests.clear_history(bufnr)
+  else
+    local ui_bufnr = vim.api.nvim_get_current_buf()
+    local ui_lines = vim.api.nvim_buf_get_lines(ui_bufnr, 0, -1, false)
+
+    local linenr = vim.api.nvim_win_get_cursor(0)[1]
+    local pastnr = util.get_ui_request_line(ui_lines)
+
+    local history_index = linenr - pastnr
+    requests.load(swapnr, history_index)
   end
 end
 

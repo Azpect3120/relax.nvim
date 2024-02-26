@@ -12,6 +12,8 @@ function M.create_buffer(buf_name, writeable)
     vim.api.nvim_set_option_value("buftype", "nofile", { buf = bufnr })
   else
     vim.api.nvim_set_option_value("buftype", "acwrite", { buf = bufnr })
+    vim.api.nvim_set_option_value("autowrite", true, { buf = bufnr })
+    -- vim.api.nvim_buf_set_option(bufnr, 'autowrite', true)
   end
   vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
   vim.api.nvim_set_option_value("buflisted", false, { buf = bufnr })
@@ -21,7 +23,7 @@ end
 
 --- Creates a split window for a buffer
 --- @param bufnr integer: Buffer number
-function M.create_split (bufnr)
+function M.create_split(bufnr)
   vim.api.nvim_command("vnew")
   vim.api.nvim_command("vertical resize 50")
 
@@ -36,7 +38,7 @@ end
 
 --- Hides a window
 --- @param winnr integer: Window number
-function M.hide_window (winnr)
+function M.hide_window(winnr)
   vim.api.nvim_win_hide(winnr)
 end
 
@@ -53,6 +55,5 @@ end
 function M.append(bufnr, lines)
   vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, lines)
 end
-
 
 return M
