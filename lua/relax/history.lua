@@ -2,7 +2,7 @@ local Path = require("plenary.path")
 
 local M = {
   history = {},
-  max = 10
+  max = 20
 }
 
 --- Append a request to the history
