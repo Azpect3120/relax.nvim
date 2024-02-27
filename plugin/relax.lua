@@ -8,10 +8,8 @@
 -- variable and continue running this instance of the plugin.
 if not _G.myPluginLoaded then
   -- Exposes the plugin's functions for use as commands in Neovim.
-  -- vim.api.nvim_create_user_command("Relax", require("relax").getTest, {})
+  vim.api.nvim_create_user_command("Relax", require("relax").display, {})
 
   -- Ensure plugin is only loaded once
   _G.myPluginLoaded = true
 end
-
-vim.api.nvim_create_user_command("Relax", require("relax").display, {})
