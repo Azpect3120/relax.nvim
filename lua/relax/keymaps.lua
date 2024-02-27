@@ -27,11 +27,32 @@ function Enter_event(swapnr, bufnr)
   end
 end
 
+--- Keymap for new request
+--- @param swapnr number: The previous window number
+function New_request(swapnr)
+  requests.new(swapnr)
+end
+
+--- Keymap for showing the history
+--- @param bufnr number: The buffer number
+function Show_history(bufnr)
+  requests.show_history(bufnr)
+end
+
+--- Keymap for clearing the history
+--- @param bufnr number: The buffer number
+function Clear_history(bufnr)
+  requests.clear_history(bufnr)
+end
+
 --- Set the key mappings for the window UI
 --- @param bufnr number: The buffer number
 --- @param swapnr number: The previous window number
 function M.setUIMappings(bufnr, swapnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<cr>", "<cmd>lua Enter_event(" .. swapnr .. ", " .. bufnr .. ")<cr>", { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "N", "<cmd>lua New_request(" .. swapnr .. ")<cr>", { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "P", "<cmd>lua Show_history(" .. bufnr.. ")<cr>", { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "C", "<cmd>lua Clear_history(" .. bufnr .. ")<cr>", { noremap = true })
 end
 
 return M
