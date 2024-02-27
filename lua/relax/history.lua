@@ -27,6 +27,7 @@ end
 --- Clear the history
 function M.clear()
   M.history = {}
+  M.write(M.history)
 end
 
 --- Get the history
