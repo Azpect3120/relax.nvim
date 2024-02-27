@@ -181,8 +181,8 @@ end
 --- @param bufnr number: The buffer number of the UI
 function M.clear_history(bufnr)
   history.clear()
-  window.update(bufnr,
-    { "Relax REST Client", "", "~ New Request     [N]", "~ Past Requests   [P]", "~ Clear Requests  [C]" })
+  window.update(bufnr, { "Relax REST Client", "", "~ New Request     [N]", "~ Past Requests   [P]", "~ Clear Requests  [C]" })
+  M.history_displaying = false
 end
 
 return M
