@@ -1,5 +1,6 @@
 local window = require("relax.window")
 local keymaps = require("relax.keymaps")
+local history = require("relax.history")
 
 local M = {
   bunfr = nil,
@@ -10,6 +11,7 @@ local M = {
 --- Setup the plugin
 function M.setup()
   M.bufnr = window.create_buffer("relaxui", false)
+  history.set(history.read())
 end
 
 --- Display the UI

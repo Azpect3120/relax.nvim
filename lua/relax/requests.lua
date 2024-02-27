@@ -72,6 +72,9 @@ function M.new(swapnr)
       -- Add to history
       history.append(parsed.method, parsed.url, parsed.body)
 
+      -- Write history to file
+      history.write(history.get())
+
       -- Send the request and get the response
       local res_lines = M.send_request(parsed.method, parsed.url, parsed.body)
 
