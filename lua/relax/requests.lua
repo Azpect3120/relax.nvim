@@ -117,6 +117,7 @@ function M.load(swapnr, history_index)
       "",
       "Request: " .. his.method .. " " .. his.url,
       "",
+      "Body: ",
     })
     for _, line in ipairs(util.split_string(his.body)) do
       window.append(M.request_bufnr, { line })
